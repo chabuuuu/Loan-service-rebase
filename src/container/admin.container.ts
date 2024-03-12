@@ -7,9 +7,9 @@ import { IRepository } from "@/repository/base/i.repository";
 import { IController } from "@/controller/base/i.controller";
 import { AppDataSource } from "@/database/db.datasource";
 import { Admin } from "@/models/admin.model";
-import { AdminService } from "@/service/account.service";
 import { AdminRepository } from "@/repository/admin.repository";
 import { AdminController } from "@/controller/admin.controller";
+import { AdminService } from "@/service/admin.service";
 
 const adminContainer = new Container();
 adminContainer.bind<IService<any>>(ITYPES.Service).to(AdminService);

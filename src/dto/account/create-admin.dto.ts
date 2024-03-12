@@ -1,17 +1,14 @@
-import { IsDateString, IsNotEmpty, IsString, IsStrongPassword } from "class-validator"
+import { IsDateString, IsEmail, IsNotEmpty, IsPhoneNumber, IsString, IsStrongPassword, MaxLength } from "class-validator"
 
 export class CreateAdminDto {
     @IsNotEmpty()
-    @IsString()   
-    roleId! : string
-
-    @IsNotEmpty()
     @IsString()
+    @IsEmail(undefined , {message : "email is not valid"})
     email! : string
 
     @IsNotEmpty()
     @IsString()
-    @IsStrongPassword()
+    @IsStrongPassword(undefined , {message : "password not strong enough"})
     password!: string
 
     @IsNotEmpty()
@@ -24,6 +21,7 @@ export class CreateAdminDto {
     
     @IsNotEmpty()
     @IsString()
+    @IsPhoneNumber()
     phone_number! : string
 
     @IsNotEmpty()
