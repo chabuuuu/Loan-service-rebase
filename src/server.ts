@@ -10,7 +10,9 @@ const config = require('config');
 const morgan = require('morgan')
 const corsOption = config.get('cors');
 const useHelmet = config.get('helmet');
+const server_config = config.get('server');
 const morganFormat = config.get('morganFormat');
+const enviroment = config.get('enviroment');
 const app = express();
 
 //Middleware
@@ -36,8 +38,8 @@ AppDataSource
   .initialize()
   .then(async () => {
     console.log('Database is connected');
-    app.listen(3000, () => {
-      console.log('Server is running on port http://localhost:3000');
+    app.listen(server_config.port || 3000, () => {
+      console.log(`Server is running on port http://localhost:3000 in ${enviroment} mode`)
     });
   })
   .catch((error) => {

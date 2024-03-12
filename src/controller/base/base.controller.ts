@@ -32,9 +32,7 @@ export class BaseController implements IController<any>{
         }
     }
     async create(req: any, res: any, next: any): Promise<any> {
-        try {
-            console.log('controller');
-            
+        try {            
             if (!req.body) throw new Error("Data is required");
             const data = req.body;
             const result = await this.service.create({data});

@@ -5,10 +5,10 @@ export class Admin {
     @PrimaryGeneratedColumn("uuid")
     id! : string 
 
-    @Column("varchar", {length: 30})
+    @Column("varchar", {length: 30, unique: true})
     email! : string
 
-    @Column("varchar", {length: 20})
+    @Column("varchar", {length: 100})
     password!: string
 
     @Column("varchar", {length: 30})
@@ -17,7 +17,7 @@ export class Admin {
     @Column("varchar", {length: 150})
     address! : string
     
-    @Column("varchar", {length: 15})
+    @Column("varchar", {length: 15, unique: true})
     phone_number! : string
 
     @Column("date")
@@ -28,4 +28,4 @@ export class Admin {
 
     @UpdateDateColumn()
     update_at! : Date
-}
+}           

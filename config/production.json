@@ -1,17 +1,12 @@
 {
-    "server": {
-        "port":  3000,
-        "host": "localhost"
-    },
     "request-limit": {
-        "limit": "100kb"
+        "limit": "10kb"
     },
+    "helmet": true,
+    "enviroment": "production",
     "cors": {
         "origin": "*",
         "methods": ["GET", "POST", "PUT", "DELETE", "UPDATE"],
         "allowedHeaders": ["X-Requested-With", "X-HTTP-Method-Override", "Content-Type", "Accept", "Observe"]
-    },
-    "helmet": false,
-    "enviroment": "default",
-    "morganFormat": "dev"
+    }
 }
