@@ -33,6 +33,9 @@ export class Borrower {
     @Column("text", {unique: true})
     CCCD! :string
 
+    @Column("boolean", {default: false})
+    isBlock!: boolean
+
     //FKs:
     @OneToMany(()=> Bad_debt, (bad_debt) => bad_debt.borrower)
     bad_debts!: Bad_debt[]

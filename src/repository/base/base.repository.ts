@@ -1,11 +1,10 @@
-import { IRepository } from "@/repository/base/i.repository";
+import { IBaseRepository } from "@/repository/interfaces/i.base.repository";
 import BaseError from "@/utils/error/base.error";
-import { log } from "console";
 import { injectable } from "inversify";
 import "reflect-metadata";
 import { EntityNotFoundError } from "typeorm";
 @injectable()
-export class BaseRepository<T extends any> implements IRepository<T> {
+export class BaseRepository<T extends any> implements IBaseRepository<T> {
   protected _model;
   constructor(model: any) {
     this._model = model;
@@ -15,6 +14,9 @@ export class BaseRepository<T extends any> implements IRepository<T> {
       const { where, data } = params;
       await this._model.findOneByOrFail(where);
       const result = await this._model.update(where, data);
+      if (data.hasOwnProperty('password')) {
+        delete data.password
+      }
       return Object.assign({ updateData: data }, { where: where }, result)
     } catch (error) {
       if (error instanceof EntityNotFoundError) {
@@ -27,6 +29,9 @@ export class BaseRepository<T extends any> implements IRepository<T> {
       const { where } = params;
       const removedEntity = await this._model.findOneByOrFail(where);
       const result = await this._model.remove(removedEntity);
+      if (result.hasOwnProperty('password')) {
+        delete result.password
+      }
       return Object.assign({ deleteData: result }, { where: where })
     } catch (error) {
       if (error instanceof EntityNotFoundError) {

@@ -13,5 +13,11 @@
     },
     "helmet": false,
     "enviroment": "default",
-    "morganFormat": "dev"
+    "morganFormat": "dev",
+    "rabbitmq": {
+        "connectionString": "amqp://localhost:5672"
+    },
+    "microservice": {
+        "protect": false
+    }
 }

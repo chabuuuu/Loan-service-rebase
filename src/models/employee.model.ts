@@ -5,12 +5,11 @@ export class Employee {
     @PrimaryGeneratedColumn("uuid")
     id! : string 
 
-    @Column("varchar", {length: 30})
+    @Column("varchar", {length: 30, unique: true})
     email! : string
 
     @Column("varchar", {length: 100})
     password!: string
-
 
     @Column("varchar", {length: 15})
     phone_number! : string
@@ -26,4 +25,7 @@ export class Employee {
 
     @Column("varchar", {length: 30})
     fullname! : string
+
+    @Column("boolean", {default: false})
+    isBlock!: boolean
 }

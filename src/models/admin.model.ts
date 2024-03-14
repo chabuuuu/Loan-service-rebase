@@ -23,6 +23,9 @@ export class Admin {
     @Column("date")
     birthday! : Date
 
+    @Column("boolean", {default: false})
+    isBlock!: boolean
+
     @CreateDateColumn()
     create_at! : Date
 

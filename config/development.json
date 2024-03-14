@@ -1,4 +1,8 @@
 {
+    "server": {
+        "port":  3001,
+        "host": "localhost"
+    },
     "request-limit": {
         "limit": "100kb"
     },
@@ -8,5 +12,8 @@
         "allowedHeaders": ["X-Requested-With", "X-HTTP-Method-Override", "Content-Type", "Accept", "Observe"]
     },
     "helmet": false,
-    "enviroment": "development"
+    "enviroment": "development",
+    "microservice": {
+        "protect": true
+    }
 }

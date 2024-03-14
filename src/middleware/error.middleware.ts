@@ -4,6 +4,7 @@ import { CannotCreateEntityIdMapError, EntityNotFoundError, QueryFailedError } f
 
 export const errorHanlder = ((error: any, req: any, res: any, next: any) => {
     console.log('Error::: ' + error);
+    
     let message = (error as any).message.message;
     let code = 'HttpException';
     let status = StatusCodes.INTERNAL_SERVER_ERROR;
@@ -16,20 +17,20 @@ export const errorHanlder = ((error: any, req: any, res: any, next: any) => {
                 status: error.status,
                 message: error.message,
             });
+            break;
         case QueryFailedError:
             status = StatusCodes.UNPROCESSABLE_ENTITY
-            if (error.hasOwnProperty('detail')){
-                message = (error as any).detail;
-            }else{
-                message = (error as QueryFailedError).message;
-
-            }
+            message = (error as any).message;
+            if (error.hasOwnProperty('detail') && (error as any).detail !== undefined){
+                message += '- detail: ' + (error as any).detail;
+            }            
             code = (error as any).code;
             break;
         case EntityNotFoundError:
             status = StatusCodes.UNPROCESSABLE_ENTITY
             message = (error as EntityNotFoundError).message;
             code = (error as any).code;
+            break;
         case CannotCreateEntityIdMapError: 
             status = StatusCodes.UNPROCESSABLE_ENTITY
             message = (error as CannotCreateEntityIdMapError).message;

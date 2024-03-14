@@ -28,4 +28,7 @@ export class Lender {
 
     @Column("varchar", {length: 30})
     fullname! : string
+
+    @Column("boolean", {default: false})
+    isBlock!: boolean
 }
